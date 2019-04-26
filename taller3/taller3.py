@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Autores:
     Andrés Mauricio Acosta Pulido - 20142020111
@@ -16,14 +15,12 @@ def rgb2gray(rgb):
     return np.dot(rgb[...,:3], [0.2989, 0.5870, 0.1140])
 
 def recorrer(imagen,mascara):
-    # Slicing    
-    imagen[0:3]
-    print(imagen)
-    for i in range(1, imagen.shape[1]):
-        for j in range(1, imagen.shape[0]):            
+    print("Empezando a recorrer: ")
+    for i in range(1, (imagen.shape[1]-1)):
+        for j in range(1, (imagen.shape[0]-1)):
             # Posible slicing
-            aux = imagen[j][i]*mascara            
-            print (aux)
+            #aux = imagen[j:3][i:3]*mascara            
+            #print (aux)
             #elem=elem+aux
     return imagen
     
@@ -37,6 +34,7 @@ plt.show()
 print(gray.shape[0])
 print(gray.shape[1])
 gray=recorrer(gray,mascara)
+
 print("Después de recorrer")
 plt.imshow(gray, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
 plt.show()

@@ -19,21 +19,26 @@ def recorrer(imagen,mascara):
     # Slicing    
     imagen[0:3]
     print(imagen)
-    for i in range(imagen.shape):
-        for j in range(imagen.shape[1]):
+    for i in range(1, imagen.shape[1]):
+        for j in range(1, imagen.shape[0]):            
             # Posible slicing
-            aux = imagen[i:3][j:3]*mascara
+            aux = imagen[j][i]*mascara            
             print (aux)
+            #elem=elem+aux
+    return imagen
     
 # Leyendo la imagen
-img = mpimg.imread('/home/estudiantes/Imágenes/CienciasDeDatos/taller3/image.png')
+img = mpimg.imread('./image.png')
 # Declaración de máscara
 mascara = np.full((3,3),1/9)          
 gray = rgb2gray(img)    
 plt.imshow(gray, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
 plt.show()
-print(gray)
-recorrer(gray,mascara)
-
+print(gray.shape[0])
+print(gray.shape[1])
+gray=recorrer(gray,mascara)
+print("Después de recorrer")
+plt.imshow(gray, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
+plt.show()
 
 

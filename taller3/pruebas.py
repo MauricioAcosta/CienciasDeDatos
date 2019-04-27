@@ -11,10 +11,13 @@ mascara = np.full((3,3),1/5)
 #print ("Slice: ",b.shape) 
 #print(b[0:(1+3),0:(1+3)])
 #print(b)
+elem=0
 #print (mascara)
-for i in range(1, (b.shape[0]-2)):
-    for j in range(1, (b.shape[0]-2)):
-        aux = b[j:(j+3),i:(i+3)]*mascara 
-        print(aux)
+for i in range(0, (b.shape[0]-2)):
+    for j in range(0, (b.shape[0]-2)):
+        aux = b[(i):(i+3),(j):(j+3)]*mascara 
+        #print(np.sum(aux))            
+        b[j+1][i+1]=np.sum(aux)
             
-            
+
+print(b)

@@ -18,12 +18,10 @@ def rgb2gray(rgb):
 def recorrer(imagen,mascara):
     print("Empezando a recorrer: ")    
     for i in range(0, (imagen.shape[0]-2)):
-        for j in range(0, (imagen.shape[0]-2)):
-            aux = np.multiply( imagen[j:(j+3),i:(i+3)] , mascara)
+        for j in range(0, (imagen.shape[1]-2)):
+            aux = np.multiply( imagen[i:(i+3),j:(j+3)] , mascara)
             #print(np.sum(aux))            
-            imagen[j+1][i+1]=np.sum(aux)
-        
-            
+            imagen[i+1][j+1]=np.sum(aux)        
     return imagen
     
 # Leyendo la imagen
@@ -33,8 +31,8 @@ mascara = np.full((3,3),1/9)
 gray = rgb2gray(img)    
 plt.imshow(gray, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
 plt.show()
-print(gray.shape[0])
-print(gray.shape[1])
+#print(gray.shape[0])
+#print(gray.shape[1])
 gray=recorrer(gray,mascara)
 
 print("Después de recorrer")

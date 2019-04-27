@@ -16,11 +16,11 @@ def rgb2gray(rgb):
 
 def recorrer(imagen,mascara):
     print("Empezando a recorrer: ")
-    for i in range(1, (imagen.shape[1]-1)):
-        for j in range(1, (imagen.shape[0]-1)):
-            # Posible slicing
-            #aux = imagen[j:3][i:3]*mascara            
-            #print (aux)
+    for i in range(1, (b.shape[0]-2)):
+        for j in range(1, (b.shape[0]-2)):
+            aux = np.multiply( b[j:(j+3),i:(i+3)] , mascara) 
+            print(aux)            
+    
             #elem=elem+aux
     return imagen
     

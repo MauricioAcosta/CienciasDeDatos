@@ -12,9 +12,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
-def efectoImagen(icono):     
-    pass
-
 def rgb2gray(rgb):
     return np.dot(rgb[...,:3], [0.2989, 0.5870, 0.1140])
 
@@ -26,22 +23,32 @@ def recorrer(imagen, elementos):
         for j in range(0, 4):
             x = (i)*elementos
             y = (j)*elementos
-            aux=imagen[x:x+elementos,y:y+elementos]
-            cara+[i,j]=aux
-            print(cara)
-            plt.imshow(aux, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
-            plt.show()
+            partes=imagen[x:x+elementos,y:y+elementos]
+    return partes
+
+def unirpartes(partes, imagen):
+    for i in range(1,16):
+        for j in range(1,16):
+            aux1=np.hstack((partes[i],partes[j]))
+            aux2=np.vstack((partes[i],partes[j]))
+    total=np.concatenate((aux1, aux2), axis=None)
+    return total
     
 # Leyendo la imagen
 img = mpimg.imread('./image.png')
 
 gray = rgb2gray(img)
-
 gray = gray[:gray.shape[0]-15,:gray.shape[0]-15]
-print(gray)        
 plt.imshow(gray, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
 plt.show()
-print(gray.shape[0])
-elementos=gray.shape[0]//4
-recorrer(gray, elementos)
 
+elementos=gray.shape[0]//4
+partes=recorrer(gray, elementos)
+
+desorden=np.arange(16).reshape(4,4)
+np.random.shuffle(desorden)
+
+#totalpartes=unirpartes(partes,gray)
+
+#plt.imshow(totalpartes, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
+#plt.show()

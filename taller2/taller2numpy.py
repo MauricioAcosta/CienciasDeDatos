@@ -33,7 +33,7 @@ indices = np.array([[0, 0, 0],  # 0
                     [2, 2, 1],  # 25
                     [2, 2, 2]  # 26
                     ])
-
+print(indices)
 
 def comb(matA, matB, matC):
     return np.array(np.meshgrid(matA, matB, matC)).T.reshape(-1, 3)

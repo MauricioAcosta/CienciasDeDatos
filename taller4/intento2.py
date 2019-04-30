@@ -32,7 +32,7 @@ def recorrer(imagen, elementos):
     return partes
 
 def insertar(partes):
-    
+    pass
     
 # Leyendo la imagen
 img = mpimg.imread('./image.png')

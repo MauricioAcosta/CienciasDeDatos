@@ -7,4 +7,7 @@ api = twitter.Api(consumer_key='CGMxmM2ubhETj39Q8MVwlC8uJ',
 ## Tweets that contain the word 'twitter'
 results = api.GetSearch(
     raw_query="q=twitter%20&result_type=recent&since=2014-07-19&count=100")
-print(results)
+## Tweets that contain the word 'science'
+results2 = api.GetSearch(
+    raw_query="l=en&q=scienc%20&result_type=recent&esince%3A2019-01-01&")
+print(results2)

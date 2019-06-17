@@ -11,10 +11,10 @@
     <div class="row">
         <div class="col-12">
             <br>
-            <h2 >¿Cuántas veces un hashtag ha sido mencionado?</h2>
+            <h2 >¿Cuántas veces un hashtag ha sido usado?</h2>
             <h3>(Histograma)</h3>
             <p><!--Si selecciona alguno de los usuarios o hashtags y el otro queda sin seleccion, se creara un-->
-                Histograma con la cantidad de veces que un usuario ha mencionado un hashtag
+                Cantidad de veces que un usuario ha usado un hashtag, <br>por favor selecciona solo uno de los dos campos:
             </p>
         </div>
     </div>
@@ -28,7 +28,7 @@
                 <div class="form-group ">
                         <!--<label for="hashtags">Seleccione un Hashtag</label>-->
                         <select class="custom-select mr-sm-7" id="hashtags" name="hashtag">
-                            <option selected>Hashtag</option>
+                            <option selected>Escoja uno</option>
                             {% for hashtag in hashtags %}
                             <option value="{{hashtag.hashtag}}">#{{hashtag.hashtag}}</option>
                             {% endfor %}
@@ -42,15 +42,15 @@
             <div class="form-group ">
                 <!--<label for="Usuarios">Seleccione un usuario</label>-->
                 <select class="custom-select mr-sm-7" id="Usuarios" name="usuario">
-                    <option selected>Usuario</option>
+                    <option selected>Escoja uno</option>
                     {% for usuario in usuarios %}
                     <option value="{{usuario.arroba}}">{{usuario.nombre_cuenta}}</option>
                     {% endfor %}
                 </select>
             </div>
-           
-            
-            
+
+
+
         </div>
         <button type="submit" class="btn btn-info btn-lg">Enviar</button>
         <div class="col-xs-12"><br></div>

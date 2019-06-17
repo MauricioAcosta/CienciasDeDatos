@@ -60,12 +60,30 @@ def analitica1(request):
             # use unstack()
             dff = df1.groupby(['User'])['Hashtag'].value_counts().unstack()
             dff.fillna(0, inplace=True)
-            dff.plot(ax=ax)
+            dff.plot(ax=ax).ylabel('Cantidad de hashtags')
+
+
             buf = BytesIO()
             plt.savefig(buf, format='png', dpi=300)
             image_base641 = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
             buf.close()
             context.update({'image_base641':image_base641})
+
+            # plot data SCATTER
+            fig, ax = plt.subplots(figsize=(15,7))
+            # use unstack()
+            dff = df1.groupby(['User'])['Hashtag'].value_counts()
+            dff = dff.reset_index(name='Cantidad')
+            dff.fillna(0, inplace=True)
+            names = dff['User']
+            values = dff['Hashtag']
+            plt.scatter(names, values, c=dff['Cantidad'], s=(dff['Cantidad']*100))
+            plt.colorbar()
+            buf = BytesIO()
+            plt.savefig(buf, format='png', dpi=300)
+            image_base642 = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
+            buf.close()
+            context.update({'image_base642':image_base642})
 
         elif hashtag=='Escoja uno':
             list_of_tweets = []
@@ -133,24 +151,6 @@ def analitica1(request):
     return render(request, 'analiticas/analitica1.html', context=context)
 
 def analitica2(request):
-    usuarios = Usuarios.objects.all()
-
-    context = {
-        'usuarios': usuarios
-    }
-
-    if request.method == 'POST':
-        usuario = request.POST.get('usuario')
-        palabra1 = request.POST.get('palabra1')
-        palabra2 = request.POST.get('palabra2')
-        palabra3 = request.POST.get('palabra3')
-        palabra4 = request.POST.get('palabra4')
-
-        print(usuario, palabra1, palabra2, palabra3, palabra4)
-
-    return render(request, 'analiticas/analitica2.html', context=context)
-
-def analitica3(request):
     api = autenticacion()
     image_base64 = {}
     context = {
@@ -162,8 +162,7 @@ def analitica3(request):
         usuario = request.POST.get('usuario')
         palabra1 = request.POST.get('palabra1')
         palabra2 = request.POST.get('palabra2')
-        palabra3 = request.POST.get('palabra3')
-        palabra4 = request.POST.get('palabra4')
+
 
         if palabra1 != "":
             list_of_tweets = []
@@ -237,82 +236,10 @@ def analitica3(request):
             buf.close()
             #fig.show()
             image_base64.update({'image_base642':image_base642})
-        if palabra3 != "":
-            list_of_tweets = []
-            for i in usuarios:
-                consul = tweepy.Cursor(api.search, q='from:'+str(i.arroba)+' '+palabra3).items()
-                for tweet in consul:
-                    dict_ = {'User': tweet.user.name,
-                            'User_Name': tweet.user.screen_name,
-                            'Text': tweet.text,
-                            }
-                    list_of_tweets.append(dict_)
 
-            df1 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Text',])
-            dfRes = df1['User'].value_counts()
-            usuariosDF = dfRes.index
-            valores = dfRes.values
-            fig, ax = plt.subplots()
+    return render(request, 'analiticas/analitica2.html', context=context)
 
-            def func(pct, allvals):
-                absolute = int(pct/100.*np.sum(allvals))
-                return "{:.1f}%\n({:d} veces)".format(pct, absolute)
-            wedges, texts, autotexts = ax.pie(valores, autopct=lambda pct: func(pct, valores),
-                                            textprops=dict(color="w"))
-            ax.legend(wedges, usuariosDF,
-                    title="Usuarios",
-                    loc="center left",
-                    bbox_to_anchor=(1, 0, 0.5, 1))
-            plt.setp(autotexts, size=8)
-            ax.set_title("Participacion con la palabra {} por usuario".format(palabra3))
-            plt.plot()
-
-            buf = BytesIO()
-            plt.savefig(buf, format='png', dpi=400)
-            image_base643 = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
-            buf.close()
-            #fig.show()
-            image_base64.update({'image_base643':image_base643})
-        if palabra4 != "":
-            list_of_tweets = []
-            for i in usuarios:
-                consul = tweepy.Cursor(api.search, q='from:'+str(i.arroba)+' '+palabra4).items()
-                for tweet in consul:
-                    dict_ = {'User': tweet.user.name,
-                            'User_Name': tweet.user.screen_name,
-                            'Text': tweet.text,
-                            }
-                    list_of_tweets.append(dict_)
-
-            df1 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Text',])
-            dfRes = df1['User'].value_counts()
-            usuariosDF = dfRes.index
-            valores = dfRes.values
-            fig, ax = plt.subplots()
-
-            def func(pct, allvals):
-                absolute = int(pct/100.*np.sum(allvals))
-                return "{:.1f}%\n({:d} veces)".format(pct, absolute)
-            wedges, texts, autotexts = ax.pie(valores, autopct=lambda pct: func(pct, valores),
-                                            textprops=dict(color="w"))
-            ax.legend(wedges, usuariosDF,
-                    title="Usuarios",
-                    loc="center left",
-                    bbox_to_anchor=(1, 0, 0.5, 1))
-            plt.setp(autotexts, size=8)
-            ax.set_title("Participacion con la palabra {} por usuario".format(palabra4))
-            plt.plot()
-
-            buf = BytesIO()
-            plt.savefig(buf, format='png', dpi=400)
-            image_base644 = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
-            buf.close()
-            #fig.show()
-            image_base64.update({'image_base644':image_base644})
-
-    return render(request, 'analiticas/analitica3.html', context=context)
-
-def analitica4(request):
+def analitica3(request):
     api = autenticacion()
     image_base64 = {}
     candidatos = Candidatos.objects.all()
@@ -325,7 +252,6 @@ def analitica4(request):
         palabra1 = request.POST.get('palabra1')
         palabra2 = request.POST.get('palabra2')
         palabra3 = request.POST.get('palabra3')
-        palabra4 = request.POST.get('palabra4')
 
         if palabra1 != "":
             list_of_tweets = []
@@ -354,7 +280,7 @@ def analitica4(request):
                     loc="center left",
                     bbox_to_anchor=(1, 0, 0.5, 1))
             plt.setp(autotexts, size=8)
-            ax.set_title("Participacion con la palabra {} por candidato".format(palabra1))
+            ax.set_title("Utilización de la palabra {}".format(palabra1))
             plt.plot()
 
             buf = BytesIO()
@@ -390,7 +316,7 @@ def analitica4(request):
                     loc="center left",
                     bbox_to_anchor=(1, 0, 0.5, 1))
             plt.setp(autotexts, size=8)
-            ax.set_title("Participacion con la palabra {} por candidato".format(palabra2))
+            ax.set_title("Utilización de la palabra {}".format(palabra2))
             plt.plot()
 
             buf = BytesIO()
@@ -426,7 +352,7 @@ def analitica4(request):
                     loc="center left",
                     bbox_to_anchor=(1, 0, 0.5, 1))
             plt.setp(autotexts, size=8)
-            ax.set_title("Participacion con la palabra {} por candidato".format(palabra3))
+            ax.set_title("Utilización de la palabra {}".format(palabra3))
             plt.plot()
 
             buf = BytesIO()
@@ -435,44 +361,9 @@ def analitica4(request):
             buf.close()
             #fig.show()
             image_base64.update({'image_base643':image_base643})
-        if palabra4 != "":
-            list_of_tweets = []
-            for i in candidatos:
-                consul = tweepy.Cursor(api.search, q='from:'+str(i.arroba)+' '+palabra4).items()
-                for tweet in consul:
-                    dict_ = {'User': tweet.user.name,
-                            'User_Name': tweet.user.screen_name,
-                            'Text': tweet.text,
-                            }
-                    list_of_tweets.append(dict_)
 
-            df1 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Text',])
-            dfRes = df1['User'].value_counts()
-            candidatosDF = dfRes.index
-            valores = dfRes.values
-            fig, ax = plt.subplots()
 
-            def func(pct, allvals):
-                absolute = int(pct/100.*np.sum(allvals))
-                return "{:.1f}%\n({:d} veces)".format(pct, absolute)
-            wedges, texts, autotexts = ax.pie(valores, autopct=lambda pct: func(pct, valores),
-                                            textprops=dict(color="w"))
-            ax.legend(wedges, candidatosDF,
-                    title="candidatos",
-                    loc="center left",
-                    bbox_to_anchor=(1, 0, 0.5, 1))
-            plt.setp(autotexts, size=8)
-            ax.set_title("Participacion con la palabra {} por candidato".format(palabra4))
-            plt.plot()
-
-            buf = BytesIO()
-            plt.savefig(buf, format='png', dpi=400)
-            image_base644 = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
-            buf.close()
-            #fig.show()
-            image_base64.update({'image_base644':image_base644})
-
-    return render(request, 'analiticas/analitica4.html', context=context)
+    return render(request, 'analiticas/analitica3.html', context=context)
 
 
 def conexion(request):

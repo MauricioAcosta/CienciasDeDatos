@@ -12,34 +12,29 @@
     <div class="row">
         <div class="col-12">
             <br>
-            <h2 >Participacion de los usuarios sobre palabras clave</h2>
-            <p>Ingrese hasta 4 palabras clave para ver de manera grafica la participacion de los usuarios<br>
-                ya definidos en el uso de estas palabras en sus determinados tweeets
+            <h2 >Cuantas veces un usuario ha utilizado determinadas palabras</h2>
+            <p>Ingresa algunas palabras para visualizar <br>
+                cuantas veces han sido utilizadas
             </p>
         </div>
     </div>
     <form method="POST">
         {% csrf_token %}
         <div class="form-row">
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                 <!--<label for="palabra-clave1">Escriba una palabra clave</label>-->
                 <input type="text" name="palabra1" class="form-control" placeholder="Palabra clave 1"
                     id="palabra-clave1">
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                 <!--<label for="palabra-clave2">Escriba una palabra clave</label>-->
                 <input type="text" name="palabra2" class="form-control" placeholder="Palabra clave 2"
                     id="palabra-clave2">
             </div>
-            <div class="form-group col-md-3">
+            <div class="form-group col-md-4">
                <!-- <label for="palabra-clave3">Escriba una palabra clave</label>-->
                 <input type="text" name="palabra3" class="form-control" placeholder="Palabra clave 3"
                     id="palabra-clave3">
-            </div>
-            <div class="form-group col-md-3">
-               <!-- <label for="palabra-clave4">Escriba una palabra clave</label>-->
-                <input type="text" name="palabra4" class="form-control" placeholder="Palabra clave 4"
-                    id="palabra-clave4">
             </div>
         </div>
         <button type="submit" class="btn btn-info btn-lg">Enviar</button>

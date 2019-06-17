@@ -9,7 +9,7 @@ html {
 
 .sidebar {
   position: fixed;
-  width: 25%;
+  width: 9%;
   height: 100vh;
   background: #312450;
   font-size: 0.65em;
@@ -26,11 +26,11 @@ html {
 
 .nav ul {
   list-style: none;
-  
+
   li {
     position: relative;
     margin: 3.2em 0;
-    
+
     a {
       line-height: 5em;
       text-transform: uppercase;
@@ -40,19 +40,19 @@ html {
       display: block;
       transition: all ease-out 300ms;
     }
-    
+
     &.active a {
       color: white;
     }
-    
+
     &:not(.active)::after {
       opacity: 0.2;
     }
-    
+
     &:not(.active):hover a {
       color: rgba(#FFF, 0.75);
     }
-    
+
     &::after {
       content: '';
       position: absolute;
@@ -71,7 +71,7 @@ html {
   width: 75%;
   float: right;
   height: 100vh;
-  
+
   .container {
     display: flex;
     flex-direction: column;
@@ -79,16 +79,16 @@ html {
     justify-content: center;
     height: 100%;
   }
-  
+
   a {
     position: relative;
-    
+
     img {
       width: 48px;
       height: 48px;
     }
   }
-  
+
   p {
     text-transform: uppercase;
     font-size: 1em;

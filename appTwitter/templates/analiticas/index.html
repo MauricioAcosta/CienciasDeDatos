@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'analiticas/css/styles.css' %}">
+{% endblock styles %}
+
+
+{% block content %}
+<div class="container">
+    
+        <div class="col-xs-12" id="presentacion">
+                <br><hr>
+            <h2>
+                Analisis de datos
+                <br> relacionado a la adopción de mascotas                
+            </h2>
+<br><hr>
+<h6>
+        Andrés Mauricio Acosta Pulido - andresacostapulido96@gmail.com
+        <br>
+        Leidy Marcela Aldana Burgos - 	leidymarcelaaldana@gmail.com
+    </h6>
+
+    <br><hr>
+
+    <h6>
+            Universidad Distrital Francisco José de Caldas
+            <br>
+            Introducción a la ciencia de datos
+        </h6>
+
+        <br><hr>
+        <img src="{% static 'img/logo.png' %}" alt="Logotipo de HTML5"  height="200">
+        <br><hr>
+        </div>
+   
+    
+</div>
+{% endblock content %}

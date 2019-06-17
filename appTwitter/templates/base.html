@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
+    {% block styles %}
+
+    {% endblock styles %}
+
+    <title>Adopción de mascotas</title>
+</head>
+
+<body>
+    <header>
+        
+    </header>
+    <div class="col-xs-4">
+        <aside class="sidebar">
+            <nav class="nav">
+              <ul>
+                <p style="color:white">Adopción de mascotas</p>  
+                <li class="active"><a href="{% url 'analiticas:home' %}">Principal</a></li>
+                <li><a href="{% url 'analiticas:analitica2' %}">Palabras clave individual</a></li>
+                <li><a href="{% url 'analiticas:analitica1' %}">Menciones</a></li>                
+                <li><a href="{% url 'analiticas:analitica3' %}">Palabras clave Candidatos</a></li>
+              </ul>
+            </nav>
+          </aside>
+    </div>
+    <div class="col-xs-8">
+        {% block content %}
+
+        {% endblock content %}
+    </div>
+
+
+
+    <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

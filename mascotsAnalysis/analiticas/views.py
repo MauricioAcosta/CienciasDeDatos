@@ -53,7 +53,7 @@ def analitica1(request):
                                 'Hashtag': j.hashtag
                                 }
                         list_of_tweets.append(dict_)
-                
+
             df1 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Text', 'Hashtag'])
             # plot data
             fig, ax = plt.subplots(figsize=(15,7))
@@ -67,22 +67,6 @@ def analitica1(request):
             buf.close()
             context.update({'image_base641':image_base641})
 
-            # # plot data SCATTER
-            # fig, ax = plt.subplots(figsize=(15,7))
-            # # use unstack()
-            # dff = df1.groupby(['User'])['Hashtag'].value_counts()
-            # dff = dff.reset_index(name='Cantidad')
-            # dff.fillna(0, inplace=True)
-            # names = dff['User']
-            # values = dff['Hashtag']
-            # plt.scatter(names, values, c=dff['Cantidad'], s=(dff['Cantidad']*100))
-            # plt.colorbar()
-            # buf = BytesIO()
-            # plt.savefig(buf, format='png', dpi=300)
-            # image_base642 = base64.b64encode(buf.getvalue()).decode('utf-8').replace('\n', '')
-            # buf.close()
-            # context.update({'image_base642':image_base642})
-
         elif hashtag=='Escoja uno':
             list_of_tweets = []
             c=0
@@ -95,7 +79,7 @@ def analitica1(request):
                         }
                 list_of_tweets.append(dict_)
             df2 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Date', 'Text'])
-            
+
             fig, axes = plt.subplots(figsize=(20, 10))
             df3 = df2
             df3['Date'] = df3['Date'].astype(str).str[:10]
@@ -123,7 +107,7 @@ def analitica1(request):
                         'Date': tweet.created_at,
                         'Text': tweet.text
                         }
-                list_of_tweets.append(dict_)    
+                list_of_tweets.append(dict_)
             df4 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Date', 'Text'])
 
             fig, axes = plt.subplots(figsize=(30, 20))
@@ -142,10 +126,10 @@ def analitica1(request):
             buf.close()
             #fig.show()
             context.update({'image_base64':image_base64})
-        
 
 
-            
+
+
     return render(request, 'analiticas/analitica1.html', context=context)
 
 def analitica2(request):
@@ -153,7 +137,7 @@ def analitica2(request):
 
     context = {
         'usuarios': usuarios
-    } 
+    }
 
     if request.method == 'POST':
         usuario = request.POST.get('usuario')
@@ -163,9 +147,9 @@ def analitica2(request):
         palabra4 = request.POST.get('palabra4')
 
         print(usuario, palabra1, palabra2, palabra3, palabra4)
-    
+
     return render(request, 'analiticas/analitica2.html', context=context)
-    
+
 def analitica3(request):
     api = autenticacion()
     image_base64 = {}
@@ -180,7 +164,7 @@ def analitica3(request):
         palabra2 = request.POST.get('palabra2')
         palabra3 = request.POST.get('palabra3')
         palabra4 = request.POST.get('palabra4')
-        
+
         if palabra1 != "":
             list_of_tweets = []
             for i in usuarios:
@@ -191,7 +175,7 @@ def analitica3(request):
                             'Text': tweet.text,
                             }
                     list_of_tweets.append(dict_)
-                
+
             df1 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Text',])
             dfRes = df1['User'].value_counts()
             usuariosDF = dfRes.index
@@ -227,7 +211,7 @@ def analitica3(request):
                             'Text': tweet.text,
                             }
                     list_of_tweets.append(dict_)
-                
+
             df1 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Text',])
             dfRes = df1['User'].value_counts()
             usuariosDF = dfRes.index
@@ -263,7 +247,7 @@ def analitica3(request):
                             'Text': tweet.text,
                             }
                     list_of_tweets.append(dict_)
-                
+
             df1 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Text',])
             dfRes = df1['User'].value_counts()
             usuariosDF = dfRes.index
@@ -299,7 +283,7 @@ def analitica3(request):
                             'Text': tweet.text,
                             }
                     list_of_tweets.append(dict_)
-                
+
             df1 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Text',])
             dfRes = df1['User'].value_counts()
             usuariosDF = dfRes.index
@@ -336,13 +320,13 @@ def analitica4(request):
         'candidatos': candidatos,
         'image_base64': image_base64,
     }
-    
+
     if request.method == 'POST':
         palabra1 = request.POST.get('palabra1')
         palabra2 = request.POST.get('palabra2')
         palabra3 = request.POST.get('palabra3')
         palabra4 = request.POST.get('palabra4')
-        
+
         if palabra1 != "":
             list_of_tweets = []
             for i in candidatos:
@@ -353,7 +337,7 @@ def analitica4(request):
                             'Text': tweet.text,
                             }
                     list_of_tweets.append(dict_)
-                
+
             df1 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Text',])
             dfRes = df1['User'].value_counts()
             candidatosDF = dfRes.index
@@ -389,7 +373,7 @@ def analitica4(request):
                             'Text': tweet.text,
                             }
                     list_of_tweets.append(dict_)
-                
+
             df1 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Text',])
             dfRes = df1['User'].value_counts()
             candidatosDF = dfRes.index
@@ -425,7 +409,7 @@ def analitica4(request):
                             'Text': tweet.text,
                             }
                     list_of_tweets.append(dict_)
-                
+
             df1 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Text',])
             dfRes = df1['User'].value_counts()
             candidatosDF = dfRes.index
@@ -461,7 +445,7 @@ def analitica4(request):
                             'Text': tweet.text,
                             }
                     list_of_tweets.append(dict_)
-                
+
             df1 = pd.DataFrame(list_of_tweets, columns=['User', 'User_Name', 'Text',])
             dfRes = df1['User'].value_counts()
             candidatosDF = dfRes.index
@@ -503,4 +487,3 @@ def conexion(request):
 
 def prueba(request):
     api = autenticacion()
-

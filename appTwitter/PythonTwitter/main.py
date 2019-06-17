@@ -1,6 +1,7 @@
 import twitter
 import pandas as pd
 import numpy as np
+from pandas.io.json import json_normalize
 
 api = twitter.Api(consumer_key='CGMxmM2ubhETj39Q8MVwlC8uJ',
                   consumer_secret='xYswZsui2RTEXHcGmDCZgkkunaezFcjNsu24gPt3FvXXorwzA2',
@@ -14,15 +15,14 @@ def search_tweets():
            # raw_query="q=twitter%20&result_type=recent&since=2014-07-19&count=100")
     ## Tweets that contain the word 'science'
     results2 = api.GetSearch(
-            raw_query="l=en&q=science%20&result_type=recent&esince%3A2019-06-15&count=10")
-    print(type(results2))
+            raw_query="l=en&q=science%20&result_type=recent&esince%3A2019-06-15&count=10",
+            return_json=True)
     return results2 
 
 def fromList_toDf(lista):
-    dfObj=pd.DataFrame(lista)
-    print("dfObj: ")
-    print(dfObj.head())
-    #print (len(lista))
+    dfObj=pd.DataFrame(json_normalize(lista))
+    #print("dfObj: ")
+    #print(dfObj.head())
     return dfObj
 
 ##################################################################################
@@ -34,9 +34,7 @@ def fromList_toDf(lista):
 ##################################################################################
 
 resultados=search_tweets()
-#print("resultados[0]=",resultados[0])
-#print("resultados[1]=",resultados[1])
-datafram=fromList_toDf(resultados)
-print("Dataframa")
-print(datafram.columns)
+print(resultados)
+#datafram=fromList_toDf(resultados)
+#print(datafram)
 

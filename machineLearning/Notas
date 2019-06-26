@@ -1,0 +1,12 @@
+Maching Learning 
+Aprendizaje supervisado -- Support Vector Machine (SVM)
+se escoge el hiperplano optimo al que presente mayor margen entre los datos más ceercanos.
+Hperplano : es cualquier punto que divida una dimensión de otra, en dos metidades un plano de n+1, podria ser solo un punto, o una recta
+
+~w . u~ >= C
+
+C= -b entonces w . u + b >= 0 entonces + si no -
+
+LIBSVM
+
+http://scikit-lean.org/stable/modules/svm.html

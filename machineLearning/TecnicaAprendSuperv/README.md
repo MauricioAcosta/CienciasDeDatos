@@ -12,4 +12,5 @@ y se realizará una breve comparación entre los mismos.
 ### Estudiantes
 
 Leidy Marcela Aldana (cód. 20151020019)
+
 Andrés Acosta (cód. 20142020111)

@@ -1,3 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jul  7 2019
+
+@author: leidyaldana
+"""
+
 from sklearn import datasets
 
 iris = datasets.load_iris()

@@ -1,5 +1,12 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Sun Jul  7 2019
 
-import matplotlib.pyplot as plt
+@author: leidyaldana
+"""
+
+#import matplotlib.pyplot as plt
 #from sklearn.datasets import load_digits
 from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split

@@ -18,11 +18,15 @@ inferidas de las características de los datos
 """
 
 clf = tree.DecisionTreeClassifier()
+#print(clf)
 clf = clf.fit(iris.data, iris.target)
+print(clf)
 
 import graphviz 
 dot_data = tree.export_graphviz(clf, out_file=None) 
+print(dot_data)
 graph = graphviz.Source(dot_data) 
+print(graph)
 graph.render("iris")
 
 
@@ -31,5 +35,6 @@ dot_data = tree.export_graphviz(clf, out_file=None,
                          class_names=iris.target_names,  
                          filled=True, rounded=True,  
                          special_characters=True)  
+print(dot_data)
 graph = graphviz.Source(dot_data)  
-graph
+print(graph)

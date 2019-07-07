@@ -58,4 +58,12 @@ print(y_test)
 print(knn_r.predict(x_test[2:3][:4]))
 print(y_test[2:3][:4])
 
+predictions = knn.predict(x_test[:38])
 
+print("Metricas")
+
+from sklearn.metrics import classification_report, confusion_matrix  
+# Compute confusion matrix to evaluate the accuracy of a classification
+print(confusion_matrix(y_test,predictions))  
+#Build a text report showing the main classification metrics
+print(classification_report(y_test,predictions))  

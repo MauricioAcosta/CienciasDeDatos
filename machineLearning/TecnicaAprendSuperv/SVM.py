@@ -33,3 +33,12 @@ print(clf.predict(digits.data[-1:]))
 #plt.show()
 
 print(clf.predict([[-0.8, -1, 1, 2]]))
+
+print("Metricas")
+predictions = clf.predict(x_test[:38])
+
+from sklearn.metrics import classification_report, confusion_matrix  
+# Compute confusion matrix to evaluate the accuracy of a classification
+print(confusion_matrix(y_test,predictions))  
+#Build a text report showing the main classification metrics
+print(classification_report(y_test,predictions))  

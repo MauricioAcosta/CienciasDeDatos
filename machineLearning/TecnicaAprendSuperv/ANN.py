@@ -4,6 +4,8 @@
 Created on Sun Jul  7 09:51:50 2019
 
 @author: leidyaldana
+
+Referencia: https://stackabuse.com/introduction-to-neural-networks-with-scikit-learn/
 """
 import pandas as pd
 
@@ -44,5 +46,7 @@ print(mlp.fit(X_train, y_train.values.ravel())  )
 predictions = mlp.predict(X_test)  
 
 from sklearn.metrics import classification_report, confusion_matrix  
+# Compute confusion matrix to evaluate the accuracy of a classification
 print(confusion_matrix(y_test,predictions))  
+#Build a text report showing the main classification metrics
 print(classification_report(y_test,predictions))  

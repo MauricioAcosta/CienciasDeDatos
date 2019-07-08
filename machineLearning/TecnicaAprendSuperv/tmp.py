@@ -55,19 +55,24 @@ print(type(mSvm) )
 print("\n")
 mSvm
 print("\n")
-matrizSvm=[mSvm[i:i+5] for i in range(0, int(len(mSvm)/2), 5)]
+matrizSvm=[mSvm[i:i+5] for i in range(0, int(len(mSvm)/2), 5) ]
 matrizSvm
+
 print(np.shape(matrizSvm)) 
 
 # Create the pandas DataFrame 
-dfSvm = pd.DataFrame(matrizSvm) 
+dfSvm = pd.DataFrame(data=matrizSvm) 
 # print dataframe. 
-dfSvm
+type(dfSvm)
 
-
-
-
-
-# ============================ Concatenación de dataframes
-
-
+dfSvm = pd.DataFrame(np.array(matrizSvm),
+              columns=[' ', 'precision', 'recall', 'f1-score', 'support'])
+dfSvm.reset_index(drop=True, inplace=True)
+type(dfSvm)
+dfSvm.columns
+"""
+import matplotlib.pyplot as plt
+import pandas as pd
+dfSvm.plot(kind='bar',x='precision',y='recall')
+plt.show()
+"""

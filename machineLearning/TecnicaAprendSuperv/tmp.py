@@ -58,7 +58,7 @@ print("\n")
 matrizSvm=[mSvm[i:i+5] for i in range(0, int(len(mSvm)/2), 5) ]
 matrizSvm
 
-print(np.shape(matrizSvm)) 
+#print(np.shape(matrizSvm)) 
 
 # Create the pandas DataFrame 
 dfSvm = pd.DataFrame(data=matrizSvm) 

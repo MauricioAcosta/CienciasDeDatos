@@ -1,0 +1,5 @@
+identificar expresiones en rostros, con deep learning utilizando tensorFlow y keras
+
+realizando un clasificador de expresiones ejemplo Feliz, triste, sorprendido.
+
+no se le va a pasar la imagen, se va a leer la camara del computador.
